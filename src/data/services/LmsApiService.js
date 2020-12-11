@@ -127,6 +127,18 @@ class LmsApiService {
   static updateMoodleConfig(formData, configId) {
     return apiClient.put(`${LmsApiService.lmsIntegrationUrl}/moodle/configuration/${configId}/`, formData, 'json');
   }
+
+  static fetchSuccessFactorsConfig(uuid) {
+    return apiClient.get(`${LmsApiService.lmsIntegrationUrl}/sap_success_factors/configuration/?enterprise_customer=${uuid}`);
+  }
+
+  static postNewSuccessFactorsConfig(formData) {
+    return apiClient.post(`${LmsApiService.lmsIntegrationUrl}/sap_success_factors/configuration/`, formData, 'json');
+  }
+
+  static updateSuccessFactorsConfig(formData, configId) {
+    return apiClient.put(`${LmsApiService.lmsIntegrationUrl}/sap_success_factors/configuration/${configId}`, formData, 'json');
+  }
 }
 
 export default LmsApiService;
