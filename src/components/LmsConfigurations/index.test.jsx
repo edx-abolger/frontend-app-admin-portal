@@ -27,6 +27,16 @@ const badCanvasResponse = {
   request: { status: 400, statusText: 'Bad Request' },
 };
 
+const blackboardResponse = {
+  data: { results: [{}] },
+};
+const notFoundBlackboardResponse = {
+  request: { status: 404, statusText: 'Not Found' },
+};
+const badBlackboardResponse = {
+  request: { status: 400, statusText: 'Bad Request' },
+};
+
 const formData = new FormData();
 
 REQUIRED_MOODLE_CONFIG_FIELDS.forEach((field) => {
@@ -45,6 +55,7 @@ describe('<LmsConfigurations /> ', () => {
   it('get LMS configurations when present', async () => {
     LmsApiService.fetchMoodleConfig.mockResolvedValue(moodleResponse);
     LmsApiService.fetchCanvasConfig.mockResolvedValue(canvasResponse);
+    LmsApiService.fetchBlackboardConfig.mockResolvedValue(blackboardResponse);
     const wrapper = mount(<LmsConfigurations enterpriseId="testEnterpriseId" />);
     await waitForAsync();
     wrapper.update();
@@ -55,6 +66,7 @@ describe('<LmsConfigurations /> ', () => {
   it('return Error Page when any LMS fetch request fails with error (not 404)', async () => {
     LmsApiService.fetchMoodleConfig.mockRejectedValue(badMoodleResponse);
     LmsApiService.fetchCanvasConfig.mockRejectedValue(badCanvasResponse);
+    LmsApiService.fetchBlackboardConfig.mockRejectedValue(badBlackboardResponse);
     const wrapper = mount(<LmsConfigurations enterpriseId="testEnterpriseId" />);
     await waitForAsync();
     wrapper.update();
@@ -65,11 +77,12 @@ describe('<LmsConfigurations /> ', () => {
   it('return Fragment/Collapsible components when all have 404', async () => {
     LmsApiService.fetchMoodleConfig.mockRejectedValue(notFoundMoodleResponse);
     LmsApiService.fetchCanvasConfig.mockRejectedValue(notFoundCanvasResponse);
+    LmsApiService.fetchBlackboardConfig.mockRejectedValue(notFoundBlackboardResponse);
     const wrapper = mount(<LmsConfigurations enterpriseId="testEnterpriseId" />);
     await waitForAsync();
     wrapper.update();
     expect(wrapper.state().moodleConfig).toBeFalsy();
     expect(wrapper.find('ErrorPage').length).toBe(0);
-    expect(wrapper.find('CollapsibleAdvanced').length).toBe(2);
+    expect(wrapper.find('CollapsibleAdvanced').length).toBe(3);
   });
 });
