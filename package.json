@@ -29,7 +29,7 @@
     "@fortawesome/free-regular-svg-icons": "5.15.1",
     "@fortawesome/free-solid-svg-icons": "5.15.1",
     "@fortawesome/react-fontawesome": "0.1.12",
-    "@fullstory/browser": "1.4.5",
+    "@fullstory/browser": "1.4.6",
     "@redux-beacon/segment": "1.1.0",
     "algoliasearch": "^4.8.3",
     "axios": "0.18.1",
