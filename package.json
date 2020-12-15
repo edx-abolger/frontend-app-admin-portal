@@ -33,7 +33,7 @@
     "@redux-beacon/segment": "1.1.0",
     "algoliasearch": "^4.8.3",
     "axios": "0.18.1",
-    "axios-mock-adapter": "1.18.2",
+    "axios-mock-adapter": "1.19.0",
     "classnames": "2.2.6",
     "core-js": "3.6.5",
     "faker": "4.1.0",
